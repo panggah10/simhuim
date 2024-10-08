@@ -7,5 +7,5 @@
  */
 include '../konfig.php';
 extract($_POST);
-$query = "insert into tbl_pasien values(null,'$nama','$alamat', '$jenis_kelamin', '$no_telepon') ";
+$query = "insert into tbl_pasien values(null,'$nama','$tmp_lahir','$tgl_lahir','$alamat', '$jenis_kelamin', '$no_telepon', '$agama','$pend_terakhir','$pekerjaan','$nama_pj_pasien','$hub_pj_pasien','$pekerjaan_pj','$no_pj') ";
 mysqli_query($koneksi, $query);

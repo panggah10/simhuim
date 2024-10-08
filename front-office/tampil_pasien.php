@@ -70,6 +70,14 @@
                         <input type="text" name="nama" placeholder="Nama Pasien" class="form-control input-lg" required autofocus />
                     </div>
                     <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input type="text" name="tmp_lahir" placeholder="Tempat Lahir" class="form-control input-lg" required autofocus />
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="date" name="tgl_lahir" placeholder="Tanggal Lahir" class="form-control input-lg" required autofocus />
+                    </div>
+                    <div class="input-group input-lg">
                         <span class="input-group-addon">
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-danger">
@@ -85,11 +93,48 @@
                     </div>
                     <div class="input-group input-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input type="text" name="alamat" placeholder="Alamat" class="form-control input-lg" required />
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat" placeholder="Alamat" class="form-control input-lg" required></textarea>
                     </div>
                     <div class="input-group input-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
                         <input type="text" name="no_telepon" placeholder="Nomor Telepon" class="form-control input-lg" required />
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-book"></i> <!-- Icon for religion -->
+                        </span>
+                        <div>
+                            <label><input type="radio" name="agama" value="Islam" required> Islam</label>
+                            <label><input type="radio" name="agama" value="Kristen" required> Kristen</label>
+                            <label><input type="radio" name="agama" value="Katolik" required> Katolik</label>
+                            <label><input type="radio" name="agama" value="Hindu" required> Hindu</label>
+                            <label><input type="radio" name="agama" value="Buddha" required> Buddha</label>
+                            <label><input type="radio" name="agama" value="Konghucu" required> Konghucu</label>
+                        </div>
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                        <input type="text" name="pend_terakhir" placeholder="Pendidikan Terakhir" class="form-control input-lg" required />
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+                        <input type="text" name="pekerjaan" placeholder="Pekerjaan" class="form-control input-lg" required />
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" name="nama_pj_pasien" placeholder="Nama PJ Pasien" class="form-control input-lg" required />
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
+                        <input type="text" name="hub_pj_pasien" placeholder="Hubungan PJ Pasien" class="form-control input-lg" required />
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+                        <input type="text" name="pekerjaan_pj" placeholder="Pekerjaan PJ" class="form-control input-lg" required />
+                    </div>
+                    <div class="input-group input-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                        <input type="text" name="no_pj" placeholder="Nomor Telepon PJ" class="form-control input-lg" required />
                     </div>
                 </form>
             </div>
