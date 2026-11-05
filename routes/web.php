@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\DokterController;
@@ -22,8 +23,32 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 // Ruang Lingkup Hak Akses
 Route::middleware('auth')->group(function () {
 
+    // 0. ADMINISTRATOR UTAMA (ADMIN)
+    Route::middleware('role:Admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+        // User Management
+        Route::get('/users', [AdminController::class, 'usersIndex'])->name('users.index');
+        Route::post('/users', [AdminController::class, 'usersStore'])->name('users.store');
+        Route::put('/users/{id}', [AdminController::class, 'usersUpdate'])->name('users.update');
+        Route::delete('/users/{id}', [AdminController::class, 'usersDestroy'])->name('users.destroy');
+
+        // Dokter Management
+        Route::get('/dokters', [AdminController::class, 'doktersIndex'])->name('dokters.index');
+        Route::post('/dokters', [AdminController::class, 'doktersStore'])->name('dokters.store');
+        Route::put('/dokters/{id}', [AdminController::class, 'doktersUpdate'])->name('dokters.update');
+        Route::delete('/dokters/{id}', [AdminController::class, 'doktersDestroy'])->name('dokters.destroy');
+
+        // Master Tarif Management
+        Route::get('/tarifs', [AdminController::class, 'tarifsIndex'])->name('tarifs.index');
+        Route::post('/tarifs', [AdminController::class, 'tarifsStore'])->name('tarifs.store');
+        Route::put('/tarifs/{id}', [AdminController::class, 'tarifsUpdate'])->name('tarifs.update');
+        Route::delete('/tarifs/{id}', [AdminController::class, 'tarifsDestroy'])->name('tarifs.destroy');
+    });
+
     // 1. FRONT OFFICE
-    Route::middleware('role:Front Office')->prefix('front-office')->name('front-office.')->group(function () {
+    Route::middleware('role:Front Office,Admin')->prefix('front-office')->name('front-office.')->group(function () {
+
         // Pasien
         Route::get('/pasien', [FrontOfficeController::class, 'pasienIndex'])->name('pasien.index');
         Route::post('/pasien', [FrontOfficeController::class, 'pasienStore'])->name('pasien.store');

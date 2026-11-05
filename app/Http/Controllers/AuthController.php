@@ -50,10 +50,12 @@ class AuthController extends Controller
     private function redirectBasedOnRole($user)
     {
         return match ($user->role) {
+            'Admin' => redirect()->route('admin.dashboard'),
             'Front Office' => redirect()->route('front-office.pasien.index'),
             'Dokter' => redirect()->route('dokter.pasien.index'),
             'Departemen' => redirect()->route('departemen.pasien.index'),
             default => redirect()->route('login'),
         };
     }
+
 }

@@ -32,6 +32,11 @@ class User extends Authenticatable
         'status' => 'boolean',
     ];
 
+    public function isAdmin(): bool
+    {
+        return $this->role === 'Admin';
+    }
+
     public function isFrontOffice(): bool
     {
         return $this->role === 'Front Office';
@@ -46,6 +51,7 @@ class User extends Authenticatable
     {
         return $this->role === 'Departemen';
     }
+
 
     public function dokter(): HasOne
     {

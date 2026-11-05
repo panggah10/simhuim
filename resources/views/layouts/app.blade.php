@@ -66,9 +66,8 @@
                             <img src="{{ asset('images/logouim.png') }}" alt="Logo UIM" class="w-full h-full object-contain">
                         </div>
                         <div>
-                            <div class="font-bold text-lg leading-tight tracking-tight text-white flex items-center gap-2">
-                                <span>SIMHUIM</span>
-                                <span class="text-xs bg-emerald-400/20 text-emerald-200 border border-emerald-400/30 px-2 py-0.5 rounded-full font-medium">Laravel 13</span>
+                            <div class="font-bold text-lg leading-tight tracking-tight text-white">
+                                SIMHUIM
                             </div>
                             <div class="text-xs text-teal-100/80 font-normal">Mini Hospital UIM Yogyakarta</div>
                         </div>
@@ -77,7 +76,37 @@
                     <!-- Nav Links according to Role -->
                     @auth
                     <nav class="hidden md:flex items-center space-x-1 ml-6 border-l border-teal-600/60 pl-6">
-                        @if(auth()->user()->isFrontOffice())
+                        @if(auth()->user()->isAdmin())
+                            <a href="{{ route('admin.dashboard') }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.dashboard') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
+                                <i class="fa-solid fa-chart-line mr-1.5 opacity-80"></i> Dashboard
+                            </a>
+                            <a href="{{ route('admin.users.index') }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.users.*') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
+                                <i class="fa-solid fa-users-gear mr-1.5 opacity-80"></i> Pengguna
+                            </a>
+                            <a href="{{ route('admin.dokters.index') }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.dokters.*') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
+                                <i class="fa-solid fa-user-doctor mr-1.5 opacity-80"></i> Data Dokter
+                            </a>
+                            <a href="{{ route('admin.tarifs.index') }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.tarifs.*') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
+                                <i class="fa-solid fa-receipt mr-1.5 opacity-80"></i> Master Tarif
+                            </a>
+                            <div class="h-4 w-px bg-teal-500/60 mx-1"></div>
+                            <a href="{{ route('front-office.pasien.index') }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('front-office.pasien.*') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
+                                <i class="fa-solid fa-users mr-1.5 opacity-80"></i> Pasien
+                            </a>
+                            <a href="{{ route('front-office.prj.index') }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('front-office.prj.*') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
+                                <i class="fa-solid fa-stethoscope mr-1.5 opacity-80"></i> Rawat Jalan
+                            </a>
+                            <a href="{{ route('front-office.pri.index') }}"
+                               class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('front-office.pri.*') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
+                                <i class="fa-solid fa-bed-pulse mr-1.5 opacity-80"></i> Rawat Inap
+                            </a>
+                        @elseif(auth()->user()->isFrontOffice())
                             <a href="{{ route('front-office.pasien.index') }}"
                                class="px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('front-office.pasien.*') ? 'bg-white/20 text-white shadow-inner font-semibold' : 'text-teal-100 hover:bg-white/10 hover:text-white' }}">
                                 <i class="fa-solid fa-users mr-1.5 opacity-80"></i> Pasien
@@ -123,9 +152,15 @@
                     <div class="hidden sm:flex flex-col text-right">
                         <span class="text-sm font-semibold text-white leading-snug">{{ auth()->user()->name }}</span>
                         <div class="flex items-center justify-end space-x-1.5">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">
-                                {{ auth()->user()->role }}
-                            </span>
+                            @if(auth()->user()->isAdmin())
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/20 text-purple-200 border border-purple-400/30">
+                                    <i class="fa-solid fa-shield-halved mr-1 text-[10px]"></i> {{ auth()->user()->role }}
+                                </span>
+                            @else
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">
+                                    {{ auth()->user()->role }}
+                                </span>
+                            @endif
                             @if(auth()->user()->grup && auth()->user()->grup !== auth()->user()->name)
                                 <span class="text-[11px] text-teal-200/90 font-medium">({{ auth()->user()->grup }})</span>
                             @endif
@@ -149,7 +184,13 @@
         <!-- Mobile Navigation bar -->
         @auth
         <div class="md:hidden border-t border-teal-600/60 px-4 py-2 flex overflow-x-auto space-x-2 text-xs">
-            @if(auth()->user()->isFrontOffice())
+            @if(auth()->user()->isAdmin())
+                <a href="{{ route('admin.dashboard') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('admin.dashboard') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Dashboard</a>
+                <a href="{{ route('admin.users.index') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('admin.users.*') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Pengguna</a>
+                <a href="{{ route('admin.dokters.index') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('admin.dokters.*') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Dokter</a>
+                <a href="{{ route('admin.tarifs.index') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('admin.tarifs.*') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Tarif</a>
+                <a href="{{ route('front-office.pasien.index') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('front-office.pasien.*') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Pasien</a>
+            @elseif(auth()->user()->isFrontOffice())
                 <a href="{{ route('front-office.pasien.index') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('front-office.pasien.*') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Pasien</a>
                 <a href="{{ route('front-office.prj.index') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('front-office.prj.*') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Rawat Jalan</a>
                 <a href="{{ route('front-office.pri.index') }}" class="whitespace-nowrap px-2.5 py-1.5 rounded {{ request()->routeIs('front-office.pri.*') ? 'bg-white/20 font-bold' : 'text-teal-100' }}">Rawat Inap</a>
@@ -163,6 +204,7 @@
             @endif
         </div>
         @endauth
+
     </header>
 
     <!-- Flash Alert Notifications -->
@@ -215,7 +257,7 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200/80 py-4 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
-            &copy; {{ date('Y') }} <strong class="font-semibold text-slate-700">Mini Hospital UIM Yogyakarta</strong>. Sistem Informasi Rumah Sakit Modern berbasis Laravel 13.
+            &copy; {{ date('Y') }} <strong class="font-semibold text-slate-700">Mini Hospital UIM Yogyakarta</strong>. Sistem Informasi Manajemen Rumah Sakit.
         </div>
     </footer>
 

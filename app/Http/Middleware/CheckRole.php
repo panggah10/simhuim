@@ -22,9 +22,10 @@ class CheckRole
 
         $user = auth()->user();
 
-        if (in_array($user->role, $roles)) {
+        if ($user->role === 'Admin' || in_array($user->role, $roles)) {
             return $next($request);
         }
+
 
         abort(403, 'Akses tidak diizinkan untuk peran Anda.');
     }

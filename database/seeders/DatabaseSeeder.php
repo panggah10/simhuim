@@ -17,16 +17,38 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Seed Users
-        // Admin Front Office
-        $admin = User::create([
-            'name' => 'Petugas Front Office',
+        // Admin Utama / Super Admin
+        User::create([
+            'name' => 'Super Administrator',
+            'username' => 'superadmin',
+            'email' => 'superadmin@uim.ac.id',
+            'password' => Hash::make('superadmin'),
+            'role' => 'Admin',
+            'grup' => 'Administrator',
+            'status' => true,
+        ]);
+
+        User::create([
+            'name' => 'Administrator Sistem',
             'username' => 'admin',
             'email' => 'admin@uim.ac.id',
             'password' => Hash::make('admin'),
+            'role' => 'Admin',
+            'grup' => 'Administrator',
+            'status' => true,
+        ]);
+
+        // Front Office User
+        User::create([
+            'name' => 'Petugas Pendaftaran Front Office',
+            'username' => 'petugas',
+            'email' => 'petugas@uim.ac.id',
+            'password' => Hash::make('petugas'),
             'role' => 'Front Office',
             'grup' => 'Front Office',
             'status' => true,
         ]);
+
 
         // Departemen Users
         $departemens = [
