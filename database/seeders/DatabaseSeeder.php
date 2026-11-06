@@ -16,26 +16,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Seed Users
-        // Admin Utama / Super Admin
-        User::create([
-            'name' => 'Super Administrator',
-            'username' => 'superadmin',
-            'email' => 'superadmin@uim.ac.id',
-            'password' => Hash::make('superadmin'),
-            'role' => 'Admin',
-            'grup' => 'Administrator',
-            'status' => true,
-        ]);
-
-        User::create([
-            'name' => 'Administrator Sistem',
-            'username' => 'admin',
-            'email' => 'admin@uim.ac.id',
-            'password' => Hash::make('admin'),
-            'role' => 'Admin',
-            'grup' => 'Administrator',
-            'status' => true,
+        // 1. Seed Admin Users
+        $this->call([
+            AdminSeeder::class,
         ]);
 
         // Front Office User

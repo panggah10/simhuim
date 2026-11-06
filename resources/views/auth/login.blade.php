@@ -213,16 +213,6 @@
         }
         .btn-login:active { transform: translateY(0); }
 
-        /* Quick access buttons */
-        .quick-btn {
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        .quick-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
         /* Divider badge */
         .badge-layanan {
             background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(5, 150, 105, 0.08) 100%);
@@ -498,45 +488,6 @@
                 </div>
             </form>
 
-            {{-- Divider --}}
-            <div class="relative my-7 animate-fade-up delay-500">
-                <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-slate-200"></div>
-                </div>
-                <div class="relative flex justify-center">
-                    <span class="bg-white px-3 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                        Akses Cepat Demo
-                    </span>
-                </div>
-            </div>
-
-            {{-- Quick Access Grid --}}
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 animate-fade-up delay-500">
-                <button type="button" onclick="fillCreds('superadmin', 'superadmin')"
-                        class="quick-btn py-2.5 px-2 bg-purple-50 hover:bg-purple-100 border border-purple-200 rounded-xl text-center group">
-                    <i class="fa-solid fa-shield-halved text-purple-500 text-sm block mb-1"></i>
-                    <div class="text-xs font-bold text-purple-800">Admin</div>
-                    <div class="text-[10px] text-purple-500 font-mono">superadmin</div>
-                </button>
-                <button type="button" onclick="fillCreds('petugas', 'petugas')"
-                        class="quick-btn py-2.5 px-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-center">
-                    <i class="fa-solid fa-hospital-user text-emerald-500 text-sm block mb-1"></i>
-                    <div class="text-xs font-bold text-emerald-800">Front Office</div>
-                    <div class="text-[10px] text-emerald-500 font-mono">petugas</div>
-                </button>
-                <button type="button" onclick="fillCreds('irsyad', 'irsyad')"
-                        class="quick-btn py-2.5 px-2 bg-sky-50 hover:bg-sky-100 border border-sky-200 rounded-xl text-center">
-                    <i class="fa-solid fa-user-doctor text-sky-500 text-sm block mb-1"></i>
-                    <div class="text-xs font-bold text-sky-800">Dokter</div>
-                    <div class="text-[10px] text-sky-500 font-mono">irsyad</div>
-                </button>
-                <button type="button" onclick="fillCreds('umum', 'umum')"
-                        class="quick-btn py-2.5 px-2 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-xl text-center">
-                    <i class="fa-solid fa-clinic-medical text-amber-500 text-sm block mb-1"></i>
-                    <div class="text-xs font-bold text-amber-800">Departemen</div>
-                    <div class="text-[10px] text-amber-500 font-mono">umum</div>
-                </button>
-            </div>
 
             {{-- Bottom info --}}
             <div class="mt-8 pt-6 border-t border-slate-100 animate-fade-up delay-500">
@@ -560,23 +511,6 @@
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
 
 <script>
-    // Fill credentials function
-    function fillCreds(username, password) {
-        const usernameField = document.getElementById('username');
-        const passwordField = document.getElementById('password');
-
-        // Animate fill
-        usernameField.style.transform = 'scale(1.02)';
-        usernameField.value = username;
-        passwordField.value = password;
-
-        setTimeout(() => {
-            usernameField.style.transform = 'scale(1)';
-        }, 150);
-
-        usernameField.focus();
-    }
-
     // Custom checkbox behavior
     document.addEventListener('DOMContentLoaded', () => {
         const checkbox = document.getElementById('remember');
